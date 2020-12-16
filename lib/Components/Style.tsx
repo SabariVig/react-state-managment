@@ -1,7 +1,7 @@
 import React from 'react'
-import { useRecoilValue } from 'recoil'
+
 import { createGlobalStyle, ThemeProvider } from 'styled-components'
-import StyleStore from '../Context/Style'
+import style from '../Context/Style'
 
 const GlobalStyle = createGlobalStyle`
 
@@ -14,7 +14,7 @@ const GlobalStyle = createGlobalStyle`
   }
 `
 const StyleProvider = ({ children }) => {
-  const theme = useRecoilValue(StyleStore)
+  const theme = style
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
