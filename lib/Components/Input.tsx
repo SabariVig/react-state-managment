@@ -1,22 +1,8 @@
 import React, { useState } from 'react'
-import { useRecoilCallback, useRecoilState } from 'recoil'
 import styled from 'styled-components'
-import TaskStore from '../Context/Task'
-import TasksStore from '../Context/Tasks'
 
 const Input = () => {
   const [label, setLabel] = useState('')
-  const [tasks, setTasks] = useRecoilState(TasksStore)
-  const inputTasks = useRecoilCallback(({ set }) => {
-    return (label: string) => {
-      const newTaskID = tasks.length
-      set(TasksStore, [...tasks, newTaskID])
-      set(TaskStore(newTaskID), {
-        label,
-        completed: false,
-      })
-    }
-  })
   return (
     <div>
       <InputStyle
@@ -25,7 +11,6 @@ const Input = () => {
         }}
         onKeyUp={(e) => {
           if (e.key === 'Enter') {
-            inputTasks(label)
             setLabel('')
           }
         }}

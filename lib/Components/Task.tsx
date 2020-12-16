@@ -1,9 +1,6 @@
 import React from 'react'
-import { useRecoilState } from 'recoil'
-import TaskStore from '../Context/Task'
 
 const Task = ({ id }) => {
-  const [{ label, completed }, setTask] = useRecoilState(TaskStore(id))
   return (
     <div>
       <input
