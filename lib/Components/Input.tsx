@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
+import useTasks, { ITask } from '../Context/ListStore'
 
 const Input = () => {
+  const addTask = useTasks((state) => state.addTask)
+
   const [label, setLabel] = useState('')
   return (
     <div>
@@ -12,6 +15,9 @@ const Input = () => {
         onKeyUp={(e) => {
           if (e.key === 'Enter') {
             setLabel('')
+            addTask((state: { tasks: ITask[] }) => {
+              state.tasks = [...state.tasks, { label, completed: false }]
+            })
           }
         }}
         value={label}
